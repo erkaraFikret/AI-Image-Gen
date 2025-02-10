@@ -1,5 +1,6 @@
 import { Navlinks } from "@/constant/Constant";
 import { XIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -15,8 +16,15 @@ const MobileNav = ({ showNav, closeNav } : Props) => {
     <div>
       <div
         className={`${navOpen} text-white fixed justify-center items-center flex flex-col h-screen transform 
-    transition-all duration-1000 w-full bg-gray-950 space-y-6 z-[1050] top-0`}
+    transition-all duration-1000 w-full bg-gray-900 space-y-6 z-[1050] top-0`}
       >
+        <Link
+        href="/"
+        className="flex text-white items-center text-xl md:text-3xl font-bold ml-8 md:ml-16 gap-2 absolute top-[1.7rem] left-[0.7rem]"
+      >
+        <Image src="/logo.png" alt="logo image" width={50} height={50} />
+        <span>ImageCraft</span>
+      </Link>
         {Navlinks.map((link) => {
           return (
             <Link key={link.id} href={link.url}>

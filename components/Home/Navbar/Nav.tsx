@@ -15,20 +15,20 @@ const Nav = ({ openNav }: Props) => {
 
   useEffect(() => {
     const handler = () => {
-      if (window.screenY >= 90) setNavBg(true);
-      if (window.screenY < 90) setNavBg(false);
+      if (window.scrollY >= 90) setNavBg(true);
+      if (window.scrollY < 90) setNavBg(false);
     };
 
     window.addEventListener("scroll", handler);
 
-    return () => window.addEventListener("scroll", handler);
+    return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  const bgStyle = navBg ? "bg-gray-900 shadow-md" : "";
+  const bg_Style = navBg ? "bg-gray-900 shadow-md" : "";
 
   return (
     <div
-      className={`${bgStyle} flex items-center justify-between h-[12vh] w-full mx-auto fixed transition-all duration-200 z-[100]`}
+      className={`${bg_Style} flex items-center justify-between h-[12vh] w-full mx-auto fixed transition-all duration-200 z-[100]`}
     >
       <Link
         href="/"
