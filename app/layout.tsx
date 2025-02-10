@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import ResponsiveNav from "@/components/Home/Navbar/ResponsiveNav";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -31,9 +32,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.className} antialiased`}
+        className={`${roboto.className} bg-gray-900 antialiased`}
         suppressHydrationWarning={true}
       >
+        <ResponsiveNav />
         {children}
       </body>
     </html>
