@@ -5,6 +5,7 @@ import About from "./About/About";
 import Price from "./Price/Price";
 import Review from "./Review/Review";
 import Faq from "./Faq/Faq";
+import Footer from "./Footer/Footer";
 
 const Home = () => {
   return (
@@ -13,8 +14,9 @@ const Home = () => {
       <RecentImage />
       <About />
       <Price />
-      <Review/>
-      <Faq/>
+      <Review />
+      <Faq />
+      <Footer />
     </div>
   );
 };
