@@ -1,10 +1,14 @@
 import React from "react";
 import Hero from "./Hero/Hero";
+import RecentImage from "./RecentImage/RecentImage";
 
 const Home = () => {
-  return <div className="overflow-hidden">
-    <Hero/>
-  </div>;
+  return (
+    <div className="overflow-hidden">
+      <Hero />
+      <RecentImage />
+    </div>
+  );
 };
 
 export default Home;
