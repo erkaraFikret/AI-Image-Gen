@@ -4,6 +4,7 @@ import RecentImage from "./RecentImage/RecentImage";
 import About from "./About/About";
 import Price from "./Price/Price";
 import Review from "./Review/Review";
+import Faq from "./Faq/Faq";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <About />
       <Price />
       <Review/>
+      <Faq/>
     </div>
   );
 };
