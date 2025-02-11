@@ -7,7 +7,7 @@ const About = () => {
     <div className="pb-16 pt-16">
       <div className="w-[80%] mx-auto grid grid-cols-1 xl:grid-cols-2 items-center gap-10">
         {/* Img  */}
-        <div className="order-2 xl:order-1">
+        <div className="order-2 xl:order-1" data-aos="zoom-in" data-aos-anchor-placement="top-center">
           <Image
             src="/images/about.jpg"
             alt="about"

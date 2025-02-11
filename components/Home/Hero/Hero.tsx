@@ -51,13 +51,14 @@ const Hero = () => {
     <div className="w-[95%] min-h-screen mx-auto relative mt-[20vh]">
       <div className="z-10 relative text-white flex flex-col items-center justify-center">
         <h1
+        data-aos="fade-up"
           className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-center 
                bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text"
         >
           Transform Your Ideas into <br />
           Stunning AI Art
         </h1>
-        <p className="mt-3 text-sm sm:text-base font-semibold text-center text-gray-300">
+        <p data-aos="fade-up" data-aos-delay="100" className="mt-3 text-sm sm:text-base font-semibold text-center text-gray-300">
           Experience the future of AI-driven art creation
         </p>
         <div
