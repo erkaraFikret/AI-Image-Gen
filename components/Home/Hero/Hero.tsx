@@ -1,7 +1,52 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import axios from "axios";
+import { toast } from "sonner";
+import { Loader } from "lucide-react";
 
 const Hero = () => {
+  const [prompt, setPrompt] = useState("");
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleImageGeneration = async () => {
+    setLoading(true);
+    const options = {
+      method: "POST",
+      url: "https://ai-text-to-image-generator-api.p.rapidapi.com/realistic",
+      headers: {
+        "x-rapidapi-key": "da40e2211cmsh2977d576d4d5c2ep1eaacbjsn774c56c43eb7",
+        "x-rapidapi-host": "ai-text-to-image-generator-api.p.rapidapi.com",
+        "Content-Type": "application/json",
+      },
+      data: {
+        inputs: prompt,
+      },
+    };
+    try {
+      const response = await axios.request(options);
+      setImage(response?.data.url);
+      toast.success("Image Generated Successfully");
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("An unexpected error occurred");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDownloadImage = () => {
+    const link = document.createElement("a");
+    link.target = "_blank";
+    link.href = image;
+    link.download = "Generated-image.jpg";
+    link.click();
+  };
   return (
     <div className="w-[95%] min-h-screen mx-auto relative mt-[20vh]">
       <div className="z-10 relative text-white flex flex-col items-center justify-center">
@@ -22,9 +67,15 @@ const Hero = () => {
           <input
             placeholder="Generate Your Dream Image"
             className="w-full rounded-lg outline-none h-full text-black 
-            block flex-1 placeholder:text-xs sm:placeholder:text-base"
+  block flex-1 placeholder:text-xs sm:placeholder:text-base"
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
           />
-          <Button variant={"default"} size={"lg"}>
+          <Button
+            onClick={handleImageGeneration}
+            variant={"default"}
+            size={"lg"}
+          >
             Generate
           </Button>
         </div>
@@ -35,8 +86,29 @@ const Hero = () => {
           <Button variant={"secondary"}>Steampunk</Button>
           <Button variant={"secondary"}>Animation</Button>
           <Button variant={"secondary"}>Business</Button>
-        
         </div>
+        {loading && (
+          <div>
+            <Loader className="animate-spin mt-6" />
+          </div>
+        )}
+        {image && (
+          <div className="mt-8 flex flex-col items-center">
+            <img
+              src={image}
+              alt="AI Image"
+              className="max-w-full h-[500] rounded-lg shadow-lg"
+              loading="lazy"
+            />
+            <Button
+              onClick={handleDownloadImage}
+              className="mt-4 mb-4 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-purple-500 
+              hover:to-pink-500 transition-all duration-300"
+            >
+              Download
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
